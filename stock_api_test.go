@@ -14,6 +14,27 @@ const (
 /* --------------------------------------
  * Only testing the non-premium endpoints
  * ----------------------------------- */
+func TestTimeSeriesIntraDay(t *testing.T) {
+	token, err := GetAPIToken()
+	if err != nil {
+		t.Fatalf("Token Error: %s", err)
+	}
+
+	stockAPI := NewStockAPI(token)
+
+	/* Test building of query using parameters from Alphavantage API documentation. */
+	queryParams := QueryParams{
+		Symbol:   STOCK_SYMBOL,
+		Interval: INTERVAL,
+	}
+
+	/* Fetch daily timeseries */
+	timeseries, err := stockAPI.IntraDay(queryParams)
+	if err != nil {
+		t.Fatalf("StockAPI Error: %s", err)
+	}
+	assert.Equal(t, timeseries.MetaData.Symbol, STOCK_SYMBOL)
+}
 
 func TestTimeSeriesDaily(t *testing.T) {
 	token, err := GetAPIToken()
