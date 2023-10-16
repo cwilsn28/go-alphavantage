@@ -1,4 +1,4 @@
-module github.com/cwilsn28/govantage
+module github.com/cwilsn28/go-alphavantage
 
 go 1.21.1
 

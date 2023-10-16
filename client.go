@@ -1,4 +1,4 @@
-package govantage
+package alphavantage
 
 import (
 	"encoding/json"

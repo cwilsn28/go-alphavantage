@@ -1,4 +1,4 @@
-package govantage
+package alphavantage
 
 /*
 Metadata fields in the AV response can vary depending on the query.

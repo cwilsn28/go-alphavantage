@@ -1,4 +1,4 @@
-package govantage
+package alphavantage
 
 type QueryParams struct {
 	// Required by all timeseries calls.

@@ -1,4 +1,4 @@
-package govantage
+package alphavantage
 
 type StockAPI struct {
 	Client *Client
