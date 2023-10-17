@@ -101,3 +101,25 @@ func TestTimeSeriesMonthly(t *testing.T) {
 	}
 	assert.Equal(t, timeseries.MetaData.Symbol, STOCK_SYMBOL)
 }
+
+func TestGlobalQuote(t *testing.T) {
+	token, err := GetAPIToken()
+	if err != nil {
+		t.Fatalf("Token Error: %s", err)
+	}
+
+	stockAPI := NewStockAPI(token)
+
+	/* Test building of query using parameters from Alphavantage API documentation. */
+	queryParams := QueryParams{
+		Symbol:   STOCK_SYMBOL,
+		Interval: INTERVAL,
+	}
+
+	/* Fetch daily timeseries */
+	quote, err := stockAPI.GlobalQuote(queryParams)
+	if err != nil {
+		t.Fatalf("StockAPI Error: %s", err)
+	}
+	assert.Equal(t, quote.Quote.Symbol, STOCK_SYMBOL)
+}

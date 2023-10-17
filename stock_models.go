@@ -67,3 +67,23 @@ type MonthlyAdjustedTimeSeries struct {
 	MetaData   MetaData         `json:"Meta Data"`
 	TimeSeries map[string]OHLCV `json:"Monthly Adjusted Time Series,omitempty"`
 }
+
+/*
+ * Models for stock quotes.
+ */
+type Quote struct {
+	Symbol         string `json:"01. symbol"`
+	Open           string `json:"02. open"`
+	High           string `json:"03. high"`
+	Low            string `json:"04. low"`
+	Price          string `json:"05. price"`
+	Volume         string `json:"06. volume"`
+	LatestTradeDay string `json:"07. latest trading day"`
+	PreviousClose  string `json:"08. previous close"`
+	Change         string `json:"09. change"`
+	ChangePercent  string `json:"10. change percent"`
+}
+
+type GlobalQuote struct {
+	Quote Quote `json:"Global Quote"`
+}
