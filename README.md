@@ -17,7 +17,6 @@ http://www.alphavantage.co/documentation.
 
 ### Time Series Stock Data APIs (WIP)
 - [x] Intraday
-- [ ] Intraday Extended History
 - [x] Daily
 - [x] Daily Adjusted
 - [x] Weekly
@@ -25,7 +24,7 @@ http://www.alphavantage.co/documentation.
 - [x] Monthly
 - [x] Monthly Adjusted
 - [ ] Quote
-- [ ] Search
+- [ ] Ticker Search
 
 ### Alpha Intelligence (Not Implemented)
 
