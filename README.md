@@ -23,7 +23,7 @@ http://www.alphavantage.co/documentation.
 - [x] Weekly Adjusted
 - [x] Monthly
 - [x] Monthly Adjusted
-- [ ] Quote
+- [x] Quote
 - [ ] Ticker Search
 
 ### Alpha Intelligence (Not Implemented)
