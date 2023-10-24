@@ -130,3 +130,18 @@ func (api *StockAPI) GlobalQuote(queryParams QueryParams) (*GlobalQuote, error) 
 	err = api.Client.ExecuteQuery(&globalQuote)
 	return &globalQuote, err
 }
+
+func (api *StockAPI) TickerSearch(queryParams QueryParams) (*TickerSearchList, error) {
+	var err error
+	var searchList = TickerSearchList{}
+
+	// Set the API function
+	queryParams.Function = "SYMBOL_SEARCH"
+
+	// Create and execute a new query.
+	api.Client.NewRequest("GET")
+	api.Client.NewQuery(queryParams)
+
+	err = api.Client.ExecuteQuery(&searchList)
+	return &searchList, err
+}

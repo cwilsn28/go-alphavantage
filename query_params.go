@@ -15,6 +15,13 @@ type QueryParams struct {
 	Datatype string
 }
 
+func (q QueryParams) HasSymbol() bool {
+	if q.Symbol != "" {
+		return true
+	}
+	return false
+}
+
 func (q QueryParams) HasInterval() bool {
 	if q.Interval != "" {
 		return true
@@ -31,6 +38,13 @@ func (q QueryParams) HasOutputSize() bool {
 
 func (q QueryParams) HasDatatype() bool {
 	if q.Datatype != "" {
+		return true
+	}
+	return false
+}
+
+func (q QueryParams) HasKeywords() bool {
+	if q.Keywords != "" {
 		return true
 	}
 	return false

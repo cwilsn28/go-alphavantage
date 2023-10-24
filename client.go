@@ -48,10 +48,12 @@ func (c *Client) NewQuery(queryParams QueryParams) {
 
 	/* Set the Alphavantage function, ticker symbol, interval and APIKey */
 	query.Add("function", queryParams.Function)
-	query.Add("symbol", queryParams.Symbol)
 	query.Add("apikey", c.apiKey)
 
 	// Check for optional args.
+	if queryParams.HasSymbol() {
+		query.Add("symbol", queryParams.Symbol)
+	}
 	if queryParams.HasInterval() {
 		query.Add("interval", queryParams.Interval)
 	}
@@ -60,6 +62,9 @@ func (c *Client) NewQuery(queryParams QueryParams) {
 	}
 	if queryParams.HasDatatype() {
 		query.Add("datatype", queryParams.Datatype)
+	}
+	if queryParams.HasKeywords() {
+		query.Add("keywords", queryParams.Keywords)
 	}
 
 	/* Store the encoded query back in the client for later execution. */

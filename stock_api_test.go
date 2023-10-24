@@ -3,7 +3,7 @@ package alphavantage
 import (
 	"testing"
 
-	"github.com/magiconair/properties/assert"
+	"github.com/stretchr/testify/assert"
 )
 
 const (
@@ -122,4 +122,25 @@ func TestGlobalQuote(t *testing.T) {
 		t.Fatalf("StockAPI Error: %s", err)
 	}
 	assert.Equal(t, quote.Quote.Symbol, STOCK_SYMBOL)
+}
+
+func TestSymbolSearch(t *testing.T) {
+	token, err := GetAPIToken()
+	if err != nil {
+		t.Fatalf("Token Error: %s", err)
+	}
+
+	stockAPI := NewStockAPI(token)
+
+	/* Test building of query using parameters from Alphavantage API documentation. */
+	queryParams := QueryParams{
+		Keywords: "IBM",
+	}
+
+	/* Fetch daily timeseries */
+	results, err := stockAPI.TickerSearch(queryParams)
+	if err != nil {
+		t.Fatalf("StockAPI Error: %s", err)
+	}
+	assert.GreaterOrEqual(t, len(results.BestMatches), 0)
 }

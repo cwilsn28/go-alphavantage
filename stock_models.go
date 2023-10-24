@@ -87,3 +87,22 @@ type Quote struct {
 type GlobalQuote struct {
 	Quote Quote `json:"Global Quote"`
 }
+
+/*
+ * Models for ticker search
+ */
+type TickerSearchList struct {
+	BestMatches []TickerSymbol `json:"bestMatches`
+}
+
+type TickerSymbol struct {
+	Symbol      string `json:"1. symbol"`
+	Name        string `json:"2. name"`
+	Equity      string `json:"3. type"`
+	Region      string `json:"4. region"`
+	MarketOpen  string `json:"5. marketOpen"`
+	MarketClose string `json:"6. marketClose"`
+	TimeZone    string `json:"7. timezone"`
+	Currency    string `json:"8. currency"`
+	MatchScore  string `json:"9. matchScore"`
+}
