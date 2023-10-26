@@ -24,7 +24,7 @@ http://www.alphavantage.co/documentation.
 - [x] Monthly
 - [x] Monthly Adjusted
 - [x] Quote
-- [ ] Ticker Search
+- [x] Ticker Search
 
 ### Alpha Intelligence (Not Implemented)
 
