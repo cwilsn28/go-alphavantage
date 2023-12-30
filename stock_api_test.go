@@ -1,13 +1,15 @@
 package alphavantage
 
 import (
+	"fmt"
+	"os"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
 
 const (
-	STOCK_SYMBOL = "IBM"
+	STOCK_SYMBOL = "MSFT"
 	INTERVAL     = "5min"
 )
 
@@ -143,4 +145,35 @@ func TestSymbolSearch(t *testing.T) {
 		t.Fatalf("StockAPI Error: %s", err)
 	}
 	assert.GreaterOrEqual(t, len(results.BestMatches), 0)
+}
+
+/* -----------------------------------------------------------------------------
+ * Import/Export test functions use data stored in local .json/.csv files.
+ * This saves on alphavantage.co rate/usage limits.
+ * -------------------------------------------------------------------------- */
+func TestExportToCSV(t *testing.T) {
+	testFilename := "export_to_csv_test.csv"
+	timeseries := DailyTimeSeries{}
+
+	// Read timeseries data from .json
+	fmt.Println("Importing daily timeseries data from json")
+	err := TimeSeriesFromJSON("test_data/ibm_daily.json", &timeseries)
+	if err != nil {
+		t.Fatalf("TimeSeriesFromJSON Error: %s", err)
+	}
+
+	// Write timeseries data to .csv
+	fmt.Println("Exporting daily timeseries data to csv")
+	err = TimeSeriesToCSV(timeseries.TimeSeries, testFilename)
+	if err != nil {
+		t.Fatalf("CSV Export Error: %s", err)
+	}
+
+	// Make sure the .csv exists in the system.
+	_, err = os.Open(testFilename)
+	if os.IsNotExist(err) {
+		t.Fatalf("CSV Export Error: %s", err)
+	}
+
+	os.Remove(testFilename)
 }
